@@ -7,7 +7,7 @@ The first version will be for single files (right-click on a file) and later i'l
 # Single File
 
 ## Configuration
-1. :spiral_notepad: Edit "Single File/install-ImageToPAA.bat" with any text editor
+1. :spiral_notepad: Edit "Single File/install-ImageToPAA.ps1" with any text editor
 2. :pencil2: Modify ImageToPAA executable path line 15
 
 ![Screenshot](pictures/image2.png) 
@@ -15,13 +15,13 @@ The first version will be for single files (right-click on a file) and later i'l
 3. :floppy_disk: Save and close the file
 
 ## Install
-Run
+Run with PowerShell
 ```
 .\Single File\install-ImageToPAA.ps1
 ```
 
 ## Uninstall
-Run
+Run with PowerShell
 ```
 .\Single File\uninstall-ImageToPAA.ps1
 ```
