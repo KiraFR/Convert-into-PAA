@@ -9,7 +9,9 @@ The first version will be for single files (right-click on a file) and later i'l
 ## Configuration
 1. :open_file_folder: Edit "Single File/install-ImageToPAA.bat" with any text editor
 2. :pencil2: Modify ImageToPAA executable path line 15
+
 ![Screenshot](pictures/image2.png) 
+
 4. :floppy_disk: Save and close the file
 
 ## Install
