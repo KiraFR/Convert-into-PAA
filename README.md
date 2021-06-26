@@ -1,45 +1,31 @@
 ![Screenshot](pictures/image.png)
 
-# Build-with-AddonBuilder
-I always found that AddonBuilder was missing the possibility to build from the contextual menu.
+# Convert-into-PAA
+Originally created for the non-profit organization [Projets Edaly](https://edaly.fr/fr/home) - [Github Projets Edaly](https://github.com/Projets-Edaly), i decided to share this script that converts png, jpg, jpeg or tga files into paa files.
+The first version will be for single files (right-click on a file) and later i'll add another script that add a contextual menu item to convert all images (in the folder) into paa files.
+
+# Single File
 
 ## Configuration
-1. :open_file_folder: Edit install-BuildWithAB.bat with any text editor
-2. :pencil2: Modify AddonBuilder executable path line 9
-3. :floppy_disk: Save and close the file
+1. :open_file_folder: Edit "Single File/install-ImageToPAA.bat" with any text editor
+2. :pencil2: Modify ImageToPAA executable path line 15
+![Screenshot](pictures/image2.png) 
+4. :floppy_disk: Save and close the file
 
 ## Install
-Run as administrator
+Run
 ```
-.\install-BuildWithAB.ps1
+.\Single File\install-ImageToPAA.ps1
 ```
 
 ## Uninstall
-Run as administrator
+Run
 ```
-.\uninstall-BuildWithAB.ps1
+.\Single File\uninstall-ImageToPAA.ps1
 ```
 
 ## Usage
-Right click on any folder you want to build into PBO.
-
-### Build options
-- [x] binarize (default)
-- [ ] packonly
-- [x] clear
-- [x] temp (default)
-- [ ] prefix
-- [ ] project
-- [ ] sign
-- [x] include
-- [x] cfgconvert (default)
-- [x] filebank (default)
-- [x] dssignfile (default)
-
-### Link types
-To add or remove types to your build session, edit types_included.txt in the data folder then reinstall via the scripts.
-
-Refer to [AddonBuilder's documentation](https://community.bistudio.com/wiki/Addon_Builder) for formating the string.
+Right click on any image you want to build into PAA.
 
 ## Author
-* **Lyeed** - [Lyeed](https://github.com/Lyeed)
+* **Kira** - [Kira](https://github.com/TKiraa)
