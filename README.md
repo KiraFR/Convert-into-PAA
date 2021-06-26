@@ -12,7 +12,7 @@ The first version will be for single files (right-click on a file) and later i'l
 
 ![Screenshot](pictures/image2.png) 
 
-4. :floppy_disk: Save and close the file
+3. :floppy_disk: Save and close the file
 
 ## Install
 Run
