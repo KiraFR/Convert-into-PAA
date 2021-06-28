@@ -29,7 +29,7 @@ Run with PowerShell
 ## Usage
 Right click on any image you want to build into PAA.
 
-Note: You can select multiple files and convert them into paa.
+**Note: You can select multiple files and convert them into paa.**
 
 ## Author
 * **Kira** - [Kira](https://github.com/TKiraa)
