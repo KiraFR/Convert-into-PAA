@@ -29,14 +29,6 @@ function AddContextMenu {
         New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.tga\shell\ImageToPAA –Value 'Convert into PAA with ImageToPAA' -Force
         New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.tga\shell\ImageToPAA -Name 'Icon' -PropertyType String -Value "$Private:ImageToPAA,0"
         New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.tga\shell\ImageToPAA\command –Value "$Private:ImageToPAA ""%1""" -Force
-
-        New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.jpg\shell\ImageToPAA –Value 'Convert into PAA with ImageToPAA' -Force
-        New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.jpg\shell\ImageToPAA -Name 'Icon' -PropertyType String -Value "$Private:ImageToPAA,0"
-        New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.jpg\shell\ImageToPAA\command –Value "$Private:ImageToPAA ""%1""" -Force
-
-        New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.jpeg\shell\ImageToPAA –Value 'Convert into PAA with ImageToPAA' -Force
-        New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.jpeg\shell\ImageToPAA -Name 'Icon' -PropertyType String -Value "$Private:ImageToPAA,0"
-        New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.jpeg\shell\ImageToPAA\command –Value "$Private:ImageToPAA ""%1""" -Force
     }
 }
 
