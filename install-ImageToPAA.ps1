@@ -36,7 +36,7 @@ function AddContextMenu($ImageToPAA){
 function checkPath {
 
     #Need to change it
-    $ImageToPAA = "PATH\TO\Steam\steamapps\common\Arma 3 Tools\ImageToPAA\ImageToPAA.exe"
+    $ImageToPAA = Get-ItemPropertyValue  -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Bohemia Interactive\ImageToPAA' -Name 'tool'
 
     if ((Get-Item -Path $ImageToPAA -ErrorAction SilentlyContinue) -eq $null) {
         Write-Host 'Select the path of ImageToPAA'
