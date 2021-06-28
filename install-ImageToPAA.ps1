@@ -17,7 +17,7 @@ function AddContextMenu {
 
     if ((Get-Item -Path $ImageToPAA -ErrorAction SilentlyContinue) -eq $null) {
 
-      Write-Host "ImageToPAA.exe file was not detected in this location : '$($ImageToPAA)',`n`nOpen the file 'Single File\install-ImageToPAA' and on line 15, change the location of the ImageToPAA.exe file.`n" -ForegroundColor yellow -BackgroundColor black
+      Write-Host "ImageToPAA.exe file was not detected in this location : '$($ImageToPAA)',`n`nOpen the file 'install-ImageToPAA.ps1' and on line 15, change the location of the ImageToPAA.exe file.`n" -ForegroundColor yellow -BackgroundColor black
       Write-Host "Press any key to exit" -ForegroundColor White
       $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
