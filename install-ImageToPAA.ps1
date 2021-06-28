@@ -9,30 +9,53 @@
 # DO NOT EDIT BELOW UNLESS YOU KNOWN WHAT YOU ARE DOING
 #
 
-function AddContextMenu {
+Function Get-Folder($initialDirectory="")
+{
+    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms")|Out-Null
+
+    $foldername = New-Object System.Windows.Forms.FolderBrowserDialog
+    $foldername.Description = "Select the path of ImageToPAA"
+    $foldername.rootfolder = "MyComputer"
+    $foldername.SelectedPath = $initialDirectory
+
+    if($foldername.ShowDialog() -eq "OK")
+    {
+        $folder += $foldername.SelectedPath
+    }
+    return $folder
+}
+function AddContextMenu($ImageToPAA){
+    New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.png\shell\ImageToPAA –Value 'Convert into PAA with ImageToPAA' -Force
+    New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.png\shell\ImageToPAA -Name 'Icon' -PropertyType String -Value "$ImageToPAA,0"
+    New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.png\shell\ImageToPAA\command –Value "$ImageToPAA ""%1""" -Force
+
+    New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.tga\shell\ImageToPAA –Value 'Convert into PAA with ImageToPAA' -Force
+    New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.tga\shell\ImageToPAA -Name 'Icon' -PropertyType String -Value "$ImageToPAA,0"
+    New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.tga\shell\ImageToPAA\command –Value "$ImageToPAA ""%1""" -Force
+}
+function checkPath {
 
     #Need to change it
-    $Private:ImageToPAA = Get-ItemPropertyValue  -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Bohemia Interactive\ImageToPAA' -Name 'tool'
+    $ImageToPAA = "PATH\TO\Steam\steamapps\common\Arma 3 Tools\ImageToPAA\ImageToPAA.exe"
 
     if ((Get-Item -Path $ImageToPAA -ErrorAction SilentlyContinue) -eq $null) {
-        $Private:ImageToPAA = Read-Host 'What is the path of ImageToPAA ? (example : "PATH\TO\Steam\steamapps\common\Arma 3 Tools\ImageToPAA\ImageToPAA.exe"'
+        Write-Host 'Select the path of ImageToPAA'
+        $ImageToPAA = Get-Folder
+        $ImageToPAA = $ImageToPAA + "\ImageToPAA.exe"
 
-        Write-Host "ImageToPAA.exe file was not detected in this location : '$($ImageToPAA)',`n`nOpen the file 'install-ImageToPAA.ps1' and on line 15, change the location of the ImageToPAA.exe file.`n" -ForegroundColor yellow -BackgroundColor black
-        Write-Host "Press any key to exit" -ForegroundColor White
-        $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
-
+        if ((Get-Item -Path $ImageToPAA -ErrorAction SilentlyContinue) -eq $null) {
+            Write-Host "ImageToPAA.exe file was not detected in this location : '$($ImageToPAA)',`n`n" -ForegroundColor yellow -BackgroundColor black
+            Write-Host "Press any key to exit" -ForegroundColor White
+            $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }else{
+            AddContextMenu $ImageToPAA
+        }
     }else{
-        New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.png\shell\ImageToPAA –Value 'Convert into PAA with ImageToPAA' -Force
-        New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.png\shell\ImageToPAA -Name 'Icon' -PropertyType String -Value "$Private:ImageToPAA,0"
-        New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.png\shell\ImageToPAA\command –Value "$Private:ImageToPAA ""%1""" -Force
-
-        New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.tga\shell\ImageToPAA –Value 'Convert into PAA with ImageToPAA' -Force
-        New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.tga\shell\ImageToPAA -Name 'Icon' -PropertyType String -Value "$Private:ImageToPAA,0"
-        New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.tga\shell\ImageToPAA\command –Value "$Private:ImageToPAA ""%1""" -Force
+        AddContextMenu $ImageToPAA
     }
 }
 
 #Need Administrator approval
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
-AddContextMenu
+checkPath
