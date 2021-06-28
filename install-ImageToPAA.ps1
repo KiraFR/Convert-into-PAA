@@ -15,7 +15,7 @@ function AddContextMenu {
     $Private:ImageToPAA = Get-ItemPropertyValue  -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Bohemia Interactive\ImageToPAA' -Name 'tool'
 
     if ((Get-Item -Path $ImageToPAA -ErrorAction SilentlyContinue) -eq $null) {
-        $Private:ImageToPAA = Read-Host 'What is the patch of ImageToPAA ? (example : "PATH\TO\Steam\steamapps\common\Arma 3 Tools\ImageToPAA\ImageToPAA.exe"'
+        $Private:ImageToPAA = Read-Host 'What is the path of ImageToPAA ? (example : "PATH\TO\Steam\steamapps\common\Arma 3 Tools\ImageToPAA\ImageToPAA.exe"'
 
         Write-Host "ImageToPAA.exe file was not detected in this location : '$($ImageToPAA)',`n`nOpen the file 'install-ImageToPAA.ps1' and on line 15, change the location of the ImageToPAA.exe file.`n" -ForegroundColor yellow -BackgroundColor black
         Write-Host "Press any key to exit" -ForegroundColor White
