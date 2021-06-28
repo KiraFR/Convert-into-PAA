@@ -12,14 +12,14 @@
 function AddContextMenu {
 
     #Need to change it
-    $Private:ImageToPAA = "PATH\TO\Steam\steamapps\common\Arma 3 Tools\ImageToPAA\ImageToPAA.exe"
-
+    $Private:ImageToPAA = Get-ItemPropertyValue  -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Bohemia Interactive\ImageToPAA' -Name 'tool'
 
     if ((Get-Item -Path $ImageToPAA -ErrorAction SilentlyContinue) -eq $null) {
+        $Private:ImageToPAA = Read-Host 'What is the patch of ImageToPAA ? (example : "PATH\TO\Steam\steamapps\common\Arma 3 Tools\ImageToPAA\ImageToPAA.exe"'
 
-      Write-Host "ImageToPAA.exe file was not detected in this location : '$($ImageToPAA)',`n`nOpen the file 'install-ImageToPAA.ps1' and on line 15, change the location of the ImageToPAA.exe file.`n" -ForegroundColor yellow -BackgroundColor black
-      Write-Host "Press any key to exit" -ForegroundColor White
-      $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        Write-Host "ImageToPAA.exe file was not detected in this location : '$($ImageToPAA)',`n`nOpen the file 'install-ImageToPAA.ps1' and on line 15, change the location of the ImageToPAA.exe file.`n" -ForegroundColor yellow -BackgroundColor black
+        Write-Host "Press any key to exit" -ForegroundColor White
+        $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
     }else{
         New-Item -Path Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.png\shell\ImageToPAA –Value 'Convert into PAA with ImageToPAA' -Force
